@@ -23,6 +23,9 @@ const Settings = () => {
 		<>
 			<Card title="Настройки" className='general'>
 				<TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => {setActiveIndex(e.index); console.log(activeIndex)}}/>
+				{activeIndex==0&&<General></General>}
+				{activeIndex==1&&<Areas></Areas>}
+				{activeIndex==2&&<Columns></Columns>}			
 			</Card>
 		</>
 	);
