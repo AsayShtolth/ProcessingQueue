@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Button } from 'primereact/button';
 const saveChanges=(ingredient, time)=>{
@@ -16,7 +16,8 @@ const saveChanges=(ingredient, time)=>{
 const General = () => {
 	const [ingredient, setIngredient] = useState();
 	const [time, setTime] = useState();
-	fetch('https://check.detexline.ru/processingqueue/api/getGeneralSettings.php', {
+  useEffect(()=>{
+  fetch('https://check.detexline.ru/processingqueue/api/getGeneralSettings.php', {
   method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -31,6 +32,8 @@ const General = () => {
 	setTime(data[1]);
   })
   .catch(error => console.error(error))
+  });
+
 
 	return ( 
 		<>
