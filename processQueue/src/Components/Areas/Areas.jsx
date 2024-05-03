@@ -10,12 +10,15 @@ const saveChanges=(products)=>{
   body: JSON.stringify({ products })
 })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('save'))
   .catch(error => console.error(error))
 }
 const Areas = () => {
 	const [products, setProducts] = useState([]);
+    const [newProducts, setNewProducts] = useState([]);
 	useEffect(() => {
+        // ProductService.getProducts().then((data) => setProducts(data));
+        
         fetch('https://check.detexline.ru/processingqueue/api/getAreaSettings.php', {
   method: 'POST',
   headers: {
@@ -25,12 +28,14 @@ const Areas = () => {
 })
   .then(response => response.json())
   .then(data => {
-    JSON.stringify(data);
-    console.log(data);
+    // JSON.stringify(data);
+     //console.log(JSON.parse(data));
+    // setNewProducts(data);
     setProducts(data);
+     //setProducts(JSON.parse(data));
   })
   .catch(error => console.error(error))
-         ProductService.getProducts().then((data) => setProducts(data));
+         
     }, []);
 	const itemTemplate = (item) => {
         return (
