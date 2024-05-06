@@ -1,0 +1,25 @@
+.align-items-center{
+	/* align-items: center; */
+}
+.gap-3{
+	gap: 3;
+}
+.flex{
+	 display: flex; 
+	 flex-direction: column;
+}
+.flex-wrap{
+	 display: flex; 
+}
+.margin-botton-10{
+	margin-bottom:10px;
+}
+.justify-content-center{
+	justify-content:center;
+}
+.margin-top-25{
+	margin-top:25px;;
+}
+.font-bold{
+	font-weight: 500;
+}

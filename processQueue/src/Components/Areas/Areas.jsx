@@ -15,7 +15,7 @@ const saveChanges=(products)=>{
 }
 const Areas = () => {
 	const [products, setProducts] = useState([]);
-    const [newProducts, setNewProducts] = useState([]);
+    // const [newProducts, setNewProducts] = useState([]);
 	useEffect(() => {
         // ProductService.getProducts().then((data) => setProducts(data));
         
@@ -28,9 +28,6 @@ const Areas = () => {
 })
   .then(response => response.json())
   .then(data => {
-    // JSON.stringify(data);
-     //console.log(JSON.parse(data));
-    // setNewProducts(data);
     setProducts(data);
      //setProducts(JSON.parse(data));
   })

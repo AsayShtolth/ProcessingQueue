@@ -10,8 +10,9 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
+        <Route path="dist/settings" element={<Settings/>} />
         <Route path="dist/" element={<Main />} />
-        <Route path="/settings" element={<Settings/>} />
+        
       </Routes>
     </BrowserRouter>
       {/* <Settings></Settings> */}
