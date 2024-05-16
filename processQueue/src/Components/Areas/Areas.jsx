@@ -15,9 +15,9 @@ const saveChanges=(products)=>{
 }
 const Areas = () => {
 	const [products, setProducts] = useState([]);
-    // const [newProducts, setNewProducts] = useState([]);
+     const [newProducts, setNewProducts] = useState([]);
 	useEffect(() => {
-        // ProductService.getProducts().then((data) => setProducts(data));
+          // ProductService.getProducts().then((data) => setProducts(data));
         
         fetch('https://check.detexline.ru/processingqueue/api/getAreaSettings.php', {
   method: 'POST',
@@ -28,12 +28,20 @@ const Areas = () => {
 })
   .then(response => response.json())
   .then(data => {
-    setProducts(data);
+    if (data === undefined) {
+      ProductService.getProducts().then((data) => setProducts(data));
+    }
+    else{
+       setProducts(data);
+    }
+   
      //setProducts(JSON.parse(data));
   })
-  .catch(error => console.error(error))
-         
+  .catch(error => console.error(error))     
     }, []);
+    useEffect(()=>{
+      saveChanges(products);
+    }, [products])
 	const itemTemplate = (item) => {
         return (
             <div className="flex flex-wrap p-2 align-items-center gap-3">
@@ -46,7 +54,7 @@ const Areas = () => {
 	return ( 
 		<>
         <div className="card xl:flex xl:justify-content-center">
-            <OrderList dataKey="id" value={products} onChange={(e) => {setProducts(e.value); saveChanges(products);}} itemTemplate={itemTemplate} header="Порядок участков" dragdrop></OrderList>
+            <OrderList dataKey="id" value={products} onChange={(e) => {setProducts(e.value); }} itemTemplate={itemTemplate} header="Порядок участков" dragdrop></OrderList>
         </div>
 		</>
 	);

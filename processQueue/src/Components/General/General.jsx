@@ -35,7 +35,9 @@ const General = () => {
   })
   .catch(error => console.error(error))
   });
-
+    useEffect(()=>{
+      saveChanges(ingredient, time);
+    }, [ingredient, time])
 
 	return ( 
 		<>

@@ -10,8 +10,8 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="dist/settings" element={<Settings/>} />
-        <Route path="dist/" element={<Main />} />
+        <Route path="dist" element={<Settings/>} />
+        <Route path="dist/s" element={<Main />} />
         
       </Routes>
     </BrowserRouter>
