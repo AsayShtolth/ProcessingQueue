@@ -17,7 +17,7 @@ const Areas = () => {
 	const [products, setProducts] = useState([]);
      const [newProducts, setNewProducts] = useState([]);
 	useEffect(() => {
-          // ProductService.getProducts().then((data) => setProducts(data));
+          //  ProductService.getProducts().then((data) => setProducts(data));
         
         fetch('https://check.detexline.ru/processingqueue/api/getAreaSettings.php', {
   method: 'POST',
@@ -28,19 +28,23 @@ const Areas = () => {
 })
   .then(response => response.json())
   .then(data => {
-    if (data === undefined) {
+    if (data == undefined) {
       ProductService.getProducts().then((data) => setProducts(data));
     }
     else{
        setProducts(data);
     }
    
-     //setProducts(JSON.parse(data));
+     setProducts(JSON.parse(data));
   })
   .catch(error => console.error(error))     
     }, []);
     useEffect(()=>{
-      saveChanges(products);
+      if  (Object.keys(products)!=0){
+        saveChanges(products);
+      }
+      
+      
     }, [products])
 	const itemTemplate = (item) => {
         return (
