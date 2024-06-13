@@ -3,28 +3,27 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { ProductService } from './service/ProductService';
-const Columns = () => {
-	const [products, setProducts] = useState([]);
-    const [selectedProducts, setSelectedProducts] = useState(null);
-const saveChanges=()=>{
-    fetch('https://check.detexline.ru/processingqueue/api/saveColumnSettings.php', {
+const saveChanges=(selectedProducts, monitor)=>{
+    fetch('https://check.detexline.ru/processingqueue/serp/saveColumnSettings.php', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ selectedProducts })
+  body: JSON.stringify({ 'selectedProducts':selectedProducts, 'monitor':monitor })
 })
   .then(response => response.json())
   .then(data => console.log('save'))
   .catch(error => console.error(error))
 }
-    useEffect(() => {
-         ProductService.getProducts().then((data) => setProducts(data));
-          fetch('https://check.detexline.ru/processingqueue/api/getColumnSettings.php', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
+
+const getSettings=(monitor, setSelectedProducts, setProducts)=>{
+  
+  fetch('https://check.detexline.ru/processingqueue/serp/getColumnSettings.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
   },
+  body: JSON.stringify({ 'monitor': monitor})
 })
   .then(response => response.json())
   .then(data => {
@@ -36,9 +35,19 @@ const saveChanges=()=>{
     
   })
   .catch(error => console.error(error))
-    }, []);
+}
+
+const Columns = (props) => {
+	const [products, setProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState(null);
+    let monitor=props.monitor.label;
+
+    useEffect(() => {
+      ProductService.getProducts().then((data) => setProducts(data));
+      getSettings(monitor, setSelectedProducts, setProducts);
+    }, [monitor]);
     useEffect(()=>{
-      saveChanges(selectedProducts);
+      saveChanges(selectedProducts, monitor);
     },[selectedProducts])
 	return ( 
 		<>

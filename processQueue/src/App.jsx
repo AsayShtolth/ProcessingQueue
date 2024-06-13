@@ -8,13 +8,14 @@ import Main from './Pages/Main/Main';
 function App() {
   return (
     <>
-    <BrowserRouter>
+    <Settings></Settings>
+    {/* <BrowserRouter>
       <Routes>
-        <Route path="settings" element={<Settings/>} />
+        <Route path="/dist" element={<Settings/>} />
         <Route path="dist/s" element={<Main />} />
         
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
       {/* <Settings></Settings> */}
     </>
   )
