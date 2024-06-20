@@ -79,7 +79,7 @@ const Areas = (props) => {
     }
 
 	useEffect(() => {
-    // ProductService.getProducts().then((data) => setProducts(data));
+    //  ProductService.getProducts().then((data) => setProducts(data));
         getSettings(monitor,setProducts)
          getArea(monitor, setIngredients);
       }, [monitor]);

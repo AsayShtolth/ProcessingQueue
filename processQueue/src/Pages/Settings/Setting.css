@@ -1,3 +1,6 @@
 .general{
 	max-width: 1290px;
 }
+.p-tabmenu-nav {
+	flex-wrap: wrap;
+}
